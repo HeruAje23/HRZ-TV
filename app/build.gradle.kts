@@ -42,6 +42,7 @@ android {
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
 
     implementation(platform("androidx.compose:compose-bom:2023.10.01"))
@@ -50,7 +51,6 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material3:material3-window-size-class")
 
-    // INI KUNCINYA - pakai alpha10 biar support SDK 34
     implementation("androidx.tv:tv-foundation:1.0.0-alpha10")
     implementation("androidx.tv:tv-material:1.0.0-alpha10")
 
@@ -67,7 +67,6 @@ dependencies {
 
 configurations.all {
     resolutionStrategy {
-        // paksa biar gak ketarik core 1.16.0 yang butuh SDK 35
         force("androidx.core:core:1.12.0")
         force("androidx.core:core-ktx:1.12.0")
     }
