@@ -76,23 +76,24 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun AppScreen(viewModel: MainViewModel = viewModel()) {
+fun AppScreen(mainViewModel: MainViewModel = viewModel()) {
     var showManage by remember { mutableStateOf(false) }
     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+        val screenWidth = this.maxWidth
         Row(modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.weight(1f)) {
-                if (viewModel.currentPlayingUrl != null) { VideoPlayer(viewModel.currentPlayingUrl!!) }
+                if (mainViewModel.currentPlayingUrl != null) { VideoPlayer(mainViewModel.currentPlayingUrl!!) }
                 else { Box(Modifier.fillMaxWidth().height(200.dp).background(Color.DarkGray), contentAlignment = Alignment.Center) { Text(stringResource(R.string.app_name), color = Color.White) } }
                 Row(Modifier.fillMaxWidth().padding(8.dp), horizontalArrangement = Arrangement.SpaceBetween) {
                     Text(stringResource(R.string.title_home), color = Color.White)
                     Button(onClick = { showManage = !showManage }) { Text(if (showManage) "Tutup" else stringResource(R.string.title_manage_playlist)) }
                 }
-                val columns = if (maxWidth > 800.dp) 4 else 2
+                val columns = if (screenWidth > 800.dp) 4 else 2
                 LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = Modifier.fillMaxSize().padding(8.dp)) {
-                    items(viewModel.allChannels) { channel -> ChannelCard(channel) { viewModel.currentPlayingUrl = channel.url } }
+                    items(mainViewModel.allChannels) { channel -> ChannelCard(channel) { mainViewModel.currentPlayingUrl = channel.url } }
                 }
             }
-            if (showManage) { ManagePlaylistPanel(viewModel, Modifier.weight(0.5f).fillMaxHeight().background(Color.Gray)) }
+            if (showManage) { ManagePlaylistPanel(mainViewModel, Modifier.weight(0.5f).fillMaxHeight().background(Color.Gray)) }
         }
     }
 }
