@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">HRZ TV</string>
+    <string name="title_home">Beranda Channel</string>
+    <string name="title_manage_playlist">Kelola Playlist</string>
+    <string name="btn_add_url">Tambah via URL M3U</string>
+    <string name="btn_add_file">Pilih File Lokal (.m3u)</string>
+    <string name="btn_add_xtream">Login Xtream API</string>
+    <string name="input_url">URL Playlist</string>
+    <string name="input_server">Server URL</string>
+    <string name="input_username">Username</string>
+    <string name="input_password">Password</string>
+    <string name="btn_save">Simpan</string>
+    <string name="msg_loading">Memuat saluran...</string>
+    <string name="msg_error">Terjadi kesalahan. Coba lagi.</string>
+</resources>
