@@ -6,7 +6,6 @@ plugins {
 android {
     namespace = "com.hrztv.player"
     compileSdk = 34
-
     defaultConfig {
         applicationId = "com.hrztv.player"
         minSdk = 24
@@ -14,16 +13,13 @@ android {
         versionCode = 1
         versionName = "1.2026"
     }
-
     buildFeatures {
         compose = true
         buildConfig = true
     }
-
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.4"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -54,8 +50,9 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material3:material3-window-size-class")
 
-    implementation("androidx.tv:tv-foundation:1.0.0")
-    implementation("androidx.tv:tv-material:1.0.0")
+    // INI KUNCINYA - pakai alpha10 biar support SDK 34
+    implementation("androidx.tv:tv-foundation:1.0.0-alpha10")
+    implementation("androidx.tv:tv-material:1.0.0-alpha10")
 
     val media3Version = "1.2.1"
     implementation("androidx.media3:media3-exoplayer:$media3Version")
@@ -66,4 +63,12 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("com.google.code.gson:gson:2.10.1")
+}
+
+configurations.all {
+    resolutionStrategy {
+        // paksa biar gak ketarik core 1.16.0 yang butuh SDK 35
+        force("androidx.core:core:1.12.0")
+        force("androidx.core:core-ktx:1.12.0")
+    }
 }
